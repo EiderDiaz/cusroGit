@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TableViewEjemplo5Repetido/DatosViewController.swift"
+            timestampString = "515840158.614985"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DatosViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TableViewEjemplo5Repetido.DatosViewController.calificaciones.getter : Swift.Array&lt;Swift.Int&gt;"
+                  moduleName = "TableViewEjemplo5Repetido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jesusalbertolomelidablantes/Documents/Xcode%20Proyectos/TableViewEjemplo5Repetido/TableViewEjemplo5Repetido/DatosViewController.swift"
+                  timestampString = "515840158.62416"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TableViewEjemplo5Repetido.DatosViewController.calificaciones.setter : Swift.Array&lt;Swift.Int&gt;"
+                  moduleName = "TableViewEjemplo5Repetido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jesusalbertolomelidablantes/Documents/Xcode%20Proyectos/TableViewEjemplo5Repetido/TableViewEjemplo5Repetido/DatosViewController.swift"
+                  timestampString = "515840158.630531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TableViewEjemplo5Repetido.DatosViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; TableViewEjemplo5Repetido.DatosViewController"
+                  moduleName = "TableViewEjemplo5Repetido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jesusalbertolomelidablantes/Documents/Xcode%20Proyectos/TableViewEjemplo5Repetido/TableViewEjemplo5Repetido/DatosViewController.swift"
+                  timestampString = "515840158.636286"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "91">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TableViewEjemplo5Repetido.DatosViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TableViewEjemplo5Repetido.DatosViewController&gt;"
+                  moduleName = "TableViewEjemplo5Repetido"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jesusalbertolomelidablantes/Documents/Xcode%20Proyectos/TableViewEjemplo5Repetido/TableViewEjemplo5Repetido/DatosViewController.swift"
+                  timestampString = "515840158.641186"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
