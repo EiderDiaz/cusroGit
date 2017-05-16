@@ -1,18 +1,12 @@
-//
-//  DatosViewController.swift
-//  TableViewEjemplo5Repetido
-//
-//  Created by Jesus Alberto Lomeli Dablantes on 02/05/17.
-//  Copyright © 2017 Jesus Alberto Lomeli Dablantes. All rights reserved.
-//
-
 import UIKit
 
 class DatosViewController: UIViewController ,  UIPickerViewDataSource, UIPickerViewDelegate {
     
     var delegado : ProtocoloAltaAlumno? = nil
     
-    var calificaciones = Array(0...100)
+    var centenas = [0,7,8,9,10]
+    var decenas = [0,1,2,3,4,5,6,7,8,9]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +28,21 @@ class DatosViewController: UIViewController ,  UIPickerViewDataSource, UIPickerV
         
         let texto = dato.text
         let datosapellidos = apellidos.text
-        let datoscalificacion = Int(pickerCalificaciones.selectedRow(inComponent: 0))
+        let  Indexcentenas = pickerCalificaciones.selectedRow(inComponent: 0)
+        let Indexdecenas = pickerCalificaciones.selectedRow(inComponent: 1)
+        let centenas  = String(self.centenas[Indexcentenas])
+        let decenas = String(self.decenas[Indexdecenas])
+        var Stringcalificacion = centenas+decenas
+        var calificacion = Int(Stringcalificacion)
+        print(Stringcalificacion)
+        if(calificacion! > 100 ){
+            calificacion = 100
+        }
+        if(calificacion! < 70 ){
+            calificacion = 0
+        }
+
+        
         
         
         
@@ -48,7 +56,7 @@ class DatosViewController: UIViewController ,  UIPickerViewDataSource, UIPickerV
         }
         else{
             
-            if (delegado?.guardar(nombre: texto!, apellidos: datosapellidos!, calificacion: datoscalificacion))! {
+            if (delegado?.guardar(nombre: texto!, apellidos: datosapellidos!, calificacion: calificacion!))! {
                 dismiss(animated: true, completion: nil)
             }
             else {
@@ -68,15 +76,32 @@ class DatosViewController: UIViewController ,  UIPickerViewDataSource, UIPickerV
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return calificaciones.count
+        if(component == 0){
+        return centenas.count
+        }
+        
+        else{
+            return decenas.count
+        }
+        
     }
-    
+
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(calificaciones[row])
-    }
+        
+        if(component == 0){
+        return String(centenas[row])
+        }
+        else{
+             return String(decenas[row])
+        }
+}
+        
+        
+
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     @IBOutlet weak var pickerCalificaciones: UIPickerView!
@@ -89,3 +114,4 @@ class DatosViewController: UIViewController ,  UIPickerViewDataSource, UIPickerV
     
 
 }
+
