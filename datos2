@@ -1,0 +1,239 @@
+datos2ViewController.swift
+//  pelisproyect
+//
+//  Created by eiderdiaz on 5/24/17.
+//  Copyright © 2017 arqmaq11. All rights reserved.
+//
+
+import UIKit
+
+class datos2ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    
+    var arrayactores : [String] = []
+    
+    var delegate : ProtocoloAltaPeliculas? = nil
+    
+    @IBOutlet weak var fecha: UIDatePicker!
+    @IBOutlet weak var txtnombre: UITextField!
+    @IBOutlet weak var txtnombreesp: UITextField!
+    @IBOutlet weak var tableactores: UITableView!
+    
+    var gen = ""
+    
+    @IBAction func generoOnChange(_ sender: UISegmentedControl) {
+       
+        print(genero.selectedSegmentIndex)
+        
+        switch (genero.selectedSegmentIndex) {
+        case 0:
+            gen = "comedia"
+        case 1:
+            gen = "accion"
+        case 2:
+            gen = "ficcion"
+        case 3:
+            gen = "fantasia"
+        case 4:
+            gen = "drama"
+        case 5:
+            gen = "musical"
+            
+        default:
+            gen = "comedia"
+        }
+        
+        
+    }
+ 
+    var cali = ""
+
+    
+    @IBAction func califiOnChange(_ sender: UISegmentedControl) {
+        print(calif.selectedSegmentIndex)
+        switch (calif.selectedSegmentIndex) {
+        case 0:
+            cali = "1"
+        case 1:
+            cali = "2"
+        case 2:
+            cali = "3"
+        case 2:
+            cali = "4"
+        default:
+            cali = "3"
+        }
+    }
+    
+    @IBAction func AgregarActor(_ sender: UIButton) {
+        let actoresPrompt = UIAlertController(title: "agrega el nombre del acttor", message: "agrega el nombre del actor.", preferredStyle: UIAlertControllerStyle.alert)
+        actoresPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        actoresPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) -> Void in
+            // Now do whatever you want with inputTextField (remember to unwrap the optional)
+            if let textField = actoresPrompt.textFields?.first{
+                self.arrayactores.append(textField.text!)
+                self.tableactores.reloadData()
+            } else {
+                print("hay falla")
+            }
+            
+            
+        }))
+        actoresPrompt.addTextField(configurationHandler: {(textField: UITextField!) in
+            textField.placeholder = "actor"
+            
+            print(textField.text!)
+        })
+        
+        present(actoresPrompt, animated: true, completion: nil)
+        
+        var actoresv = ""
+        
+        for actor in arrayactores{
+            
+            actoresv = actoresv+"&"+actor
+        }
+        
+    }
+    @IBOutlet weak var lugar: UITextField!
+    
+    @IBOutlet weak var calif: UISegmentedControl!
+    @IBOutlet weak var genero: UISegmentedControl!
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return arrayactores.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style:UITableViewCellStyle.default,reuseIdentifier: "celdaactores" )
+        
+        cell.textLabel?.text = arrayactores[indexPath.row]
+        
+        return cell
+        
+    }
+    
+    
+    @IBAction func guardar(_ sender: UIBarButtonItem) {
+        let nombre = txtnombre.text
+        let nombreesp = self.txtnombreesp.text
+        let lugar = self.lugar.text
+        self.fecha.datePickerMode = UIDatePickerMode.date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        
+        let fecha  = dateFormatter.string(from: self.fecha.date)
+        var gen = ""
+        
+        print(genero.selectedSegmentIndex)
+        
+        switch (genero.selectedSegmentIndex) {
+        case 0:
+            gen = "comedia"
+        case 1:
+            gen = "accion"
+        case 2:
+            gen = "ficcion"
+        case 3:
+            gen = "fantasia"
+        case 4:
+            gen = "drama"
+        case 5:
+            gen = "musical"
+            
+        default:
+            gen = "comedia"
+        }
+        
+        var actoresv = ""
+        for actor in arrayactores{
+            actoresv = actoresv+"&"+actor
+        }
+        
+        
+        
+        
+        if (nombre == "") || (nombreesp == "") || (fecha == "") || (lugar == "") || (gen == "") || (cali == "")  || (actoresv == "")   {
+            
+            
+            print(nombre!)
+            print(nombreesp!)
+            print(fecha)
+            print(gen)
+            print(cali)
+            print(actoresv)
+            
+            let Alerta = UIAlertController(title: "Error al Guardar", message: "Campos vacios", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Aceptarlo", style: .default){(action: UIAlertAction!) in}
+            
+            Alerta.addAction(okAction)
+            self.present(Alerta, animated: true, completion: nil)
+            
+        }
+            
+        else{
+            
+            if (delegate?.guardar(nombre :nombre! ,nombreesp: nombreesp! ,lugar:lugar!,fecha:fecha,genero : gen, calificacion:cali,actores:actoresv))! {
+                
+                dismiss(animated: true, completion: nil)
+                
+            }
+                
+            else {
+                
+                
+                let Alerta = UIAlertController(title: "Error al Guardar", message: "pelicula duplicado", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Aceptarlo", style: .default){(action: UIAlertAction!) in}
+                
+                Alerta.addAction(okAction)
+                
+                self.present(Alerta, animated: true, completion: nil)
+                
+                
+                
+            }
+            
+            
+            
+        }
+        
+    }
+    
+    
+    
+    @IBAction func cancelar(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage : UIImage(named :"popcorn.png")!)
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
